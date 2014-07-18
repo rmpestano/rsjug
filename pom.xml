@@ -101,6 +101,8 @@
 		</plugins>
 	</build>
 	<profiles>
+
+		<!-- container profiles -->
 		<profile>
 			<id>arquillian-weld-ee-embedded-1.1</id>
 			<build>
@@ -191,6 +193,24 @@
 					<version>7.2.0.Final</version>
 				</dependency>
 			</dependencies>
+		</profile>
+
+		<!-- testing profiles -->
+		<profile>
+			<id>mybean-test</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.14.1</version>
+						<configuration>
+							<includes>
+								<include>**/*MyBeanTest.java</include>
+							</includes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 </project>

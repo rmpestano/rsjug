@@ -1,0 +1,61 @@
+new-project --named RSJug --topLevelPackage com.rs.jug --finalName rsjug --type war
+
+persistence setup --provider HIBERNATE --container WILDFLY
+
+entity --named Evento
+field string --named nome
+field temporal --type  DATE --named Data
+
+
+entity --named Palestrante
+field string --named nome	
+
+cd ../Evento.java
+
+field manyToOne --named Palestrante --fieldType com.rs.jug.model.Palestrante.java
+
+entity --named Participante
+
+cd ../Evento.java
+
+field oneToMany --named Participantes --fieldType com.rs.jug.model.Participante.java
+
+beans setup
+
+cria MyBean
+
+forge install-plugin arquillian
+
+arquillian setup --containerName WELD_EE_EMBEDDED_1.1
+
+ajustar dependencias de teste
+
+remover weld-api
+
+<dependency>
+   <groupId>org.jboss.spec</groupId>
+   <artifactId>jboss-javaee-web-6.0</artifactId>
+   <version>2.0.0.Final</version>
+   <type>pom</type>
+</dependency>
+<dependency>
+ <groupId>javax.enterprise</groupId>
+ <artifactId>cdi-api</artifactId>
+ <version>1.2</version>
+ <scope>test</scope>
+</dependency> 
+
+arquillian create-test --class com.rs.jug.bean.MyBean.java
+
+arquillian setup --containerName WILDFLY_MANAGED
+
+arquillian setup --containerName JBOSS_AS_REMOTE_7
+
+forge install-plugin crud
+
+crud service-from-entity --entity com.rs.jug.model.Palestrante.java
+
+arquillian create-test --class com.rs.jug.service.PalestranteService.java
+
+
+

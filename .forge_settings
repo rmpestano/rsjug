@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration/>
+<configuration>
+<forge>
+<analytics>
+<enabled>false</enabled>
+</analytics>
+</forge>
+</configuration>
