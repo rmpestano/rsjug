@@ -27,6 +27,9 @@ obs: <property name="defaultCleanupPhase">none</property>
 7.3- matchDataset
 7.4- asserts regras de negocio 
 
+8 exemplo black box REST
+8.1 - rest setup
+
 
 
 

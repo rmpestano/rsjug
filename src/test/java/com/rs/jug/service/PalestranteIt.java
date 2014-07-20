@@ -1,10 +1,19 @@
 package com.rs.jug.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.File;
+import java.net.URL;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.MediaType;
 
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.arquillian.persistence.Cleanup;
@@ -12,8 +21,9 @@ import org.jboss.arquillian.persistence.CleanupStrategy;
 import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.TestExecutionPhase;
 import org.jboss.arquillian.persistence.UsingDataSet;
-import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
-import org.jboss.arquillian.transaction.api.annotation.Transactional;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.resteasy.client.ClientRequest;
+import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -25,9 +35,10 @@ import org.junit.runner.RunWith;
 
 import com.rs.jug.crud.Crud;
 import com.rs.jug.model.Palestrante;
+import com.rs.jug.rest.PalestranteEndpoint;
 
 @RunWith(Arquillian.class)
-public class PalestranteServiceTest
+public class PalestranteIt
 {
 
    @Inject
@@ -39,8 +50,9 @@ public class PalestranteServiceTest
 	   WebArchive archive = ShrinkWrap.create(WebArchive.class)
 	            .addClass(PalestranteService.class)
 	            .addClass(Crud.class) 
+	            .addClass(PalestranteEndpoint.class)
 	            .addPackages(true,Palestrante.class.getPackage())
-	            .addAsWebInfResource("web.xml", "web.xml")
+	            .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"), "web.xml")
 	            .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
 	            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	   
@@ -124,4 +136,20 @@ public class PalestranteServiceTest
        p.setId(1L);
        palestranteService.remove(p);
    }
+   
+   @RunAsClient
+   @Test
+   public void shouldCallEndPoint(@ArquillianResource URL url){
+	   ClientRequest request = new ClientRequest(url + "rest/palestrantes/teste/");
+       request.accept(MediaType.APPLICATION_JSON);
+       ClientResponse<String> response;
+       try {
+           response = request.get(String.class);
+           assertEquals(response.getStatus(), 200);
+       }catch(Exception e){
+    	   fail(e.getMessage());
+       }
+       
+   }
+	   
 }
