@@ -9,6 +9,7 @@
 	<packaging>war</packaging>
 	<properties>
 		<version.junit>4.11</version.junit>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.arquillian_core>1.1.5.Final</version.arquillian_core>
 	</properties>
 	<dependencyManagement>
@@ -72,14 +73,49 @@
 			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-depchain</artifactId>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.protocol</groupId>
+			<artifactId>arquillian-protocol-servlet</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-persistence-dbunit</artifactId>
+			<version>1.0.0.Alpha7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-persistence-api</artifactId>
+			<version>1.0.0.Alpha7</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>JBOSS_NEXUS</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public</url>
-		</repository>
-	</repositories>
 	<build>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<filtering>true</filtering>
+				<directory>src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<directory>src/test/java/</directory>
+				<includes>
+					<include>**/*.story</include>
+				</includes>
+			</testResource>
+		</testResources>
 		<finalName>rsjug</finalName>
 		<plugins>
 			<plugin>
@@ -101,8 +137,6 @@
 		</plugins>
 	</build>
 	<profiles>
-
-		<!-- container profiles -->
 		<profile>
 			<id>arquillian-weld-ee-embedded-1.1</id>
 			<build>
@@ -168,6 +202,7 @@
 					<groupId>org.wildfly</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
 					<version>8.0.0.Final</version>
+					<scope>test</scope>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -194,8 +229,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
-		<!-- testing profiles -->
 		<profile>
 			<id>mybean-test</id>
 			<build>

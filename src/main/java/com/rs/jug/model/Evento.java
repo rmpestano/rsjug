@@ -19,127 +19,116 @@ import java.util.HashSet;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Evento implements Serializable
-{
+public class Evento implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id = null;
-   @Version
-   @Column(name = "version")
-   private int version = 0;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id = null;
+	@Version
+	@Column(name = "version")
+	private int version = 0;
 
-   @Column
-   private String nome;
+	@Column
+	private String nome;
 
-   @Temporal(TemporalType.DATE)
-   private Date Data;
+	@Temporal(TemporalType.DATE)
+	private Date Data;
 
-   @ManyToOne
-   private Palestrante Palestrante;
+	private int vagas;
 
-   @OneToMany
-   private Set<Participante> Participantes = new HashSet<Participante>();
+	@ManyToOne
+	private Palestrante Palestrante;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	@OneToMany
+	private Set<Participante> Participantes = new HashSet<Participante>();
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   @Override
-   public boolean equals(Object that)
-   {
-      if (this == that)
-      {
-         return true;
-      }
-      if (that == null)
-      {
-         return false;
-      }
-      if (getClass() != that.getClass())
-      {
-         return false;
-      }
-      if (id != null)
-      {
-         return id.equals(((Evento) that).id);
-      }
-      return super.equals(that);
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      if (id != null)
-      {
-         return id.hashCode();
-      }
-      return super.hashCode();
-   }
+	public int getVagas() {
+		return vagas;
+	}
 
-   public String getNome()
-   {
-      return this.nome;
-   }
+	public void setVagas(int vagas) {
+		this.vagas = vagas;
+	}
 
-   public void setNome(final String nome)
-   {
-      this.nome = nome;
-   }
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		if (that == null) {
+			return false;
+		}
+		if (getClass() != that.getClass()) {
+			return false;
+		}
+		if (id != null) {
+			return id.equals(((Evento) that).id);
+		}
+		return super.equals(that);
+	}
 
-   public Date getData()
-   {
-      return this.Data;
-   }
+	@Override
+	public int hashCode() {
+		if (id != null) {
+			return id.hashCode();
+		}
+		return super.hashCode();
+	}
 
-   public void setData(final Date Data)
-   {
-      this.Data = Data;
-   }
+	public String getNome() {
+		return this.nome;
+	}
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (nome != null && !nome.trim().isEmpty())
-         result += "nome: " + nome;
-      return result;
-   }
+	public void setNome(final String nome) {
+		this.nome = nome;
+	}
 
-   public Palestrante getPalestrante()
-   {
-      return this.Palestrante;
-   }
+	public Date getData() {
+		return this.Data;
+	}
 
-   public void setPalestrante(final Palestrante Palestrante)
-   {
-      this.Palestrante = Palestrante;
-   }
+	public void setData(final Date Data) {
+		this.Data = Data;
+	}
 
-   public Set<Participante> getParticipantes()
-   {
-      return this.Participantes;
-   }
+	@Override
+	public String toString() {
+		String result = getClass().getSimpleName() + " ";
+		if (nome != null && !nome.trim().isEmpty())
+			result += "nome: " + nome;
+		return result;
+	}
 
-   public void setParticipantes(final Set<Participante> Participantes)
-   {
-      this.Participantes = Participantes;
-   }
+	public Palestrante getPalestrante() {
+		return this.Palestrante;
+	}
+
+	public void setPalestrante(final Palestrante Palestrante) {
+		this.Palestrante = Palestrante;
+	}
+
+	public Set<Participante> getParticipantes() {
+		return this.Participantes;
+	}
+
+	public void setParticipantes(final Set<Participante> Participantes) {
+		this.Participantes = Participantes;
+	}
 }

@@ -30,8 +30,7 @@ public class MyBeanTest
    }
 
    @Test
-   public void shouldBeAlive()
-   {
+   public void shouldBeAlive() {
       assertNotNull(mybean);
       assertTrue(mybean.isAlive());
       assertFalse(new MyBean().isAlive());

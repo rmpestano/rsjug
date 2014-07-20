@@ -40,7 +40,7 @@ public class PalestranteService
    }
 
    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-   public Crud crud()
+   public Crud<Palestrante> crud()
    {
       return palestranteCrud;
    }
