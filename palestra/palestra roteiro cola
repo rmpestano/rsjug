@@ -29,6 +29,17 @@ obs: <property name="defaultCleanupPhase">none</property>
 
 8 exemplo black box REST
 8.1 - rest setup
+OBS: <dependency>
+		<groupId>org.jboss.resteasy</groupId>
+		<artifactId>resteasy-jaxrs</artifactId>
+		<version>2.3.3.Final</version>
+		<scope>test</scope>
+	</dependency>
+OBS: web.xml config rest	
+8.2 -@RunAsClient
+
+9 - functional testing
+
 
 
 

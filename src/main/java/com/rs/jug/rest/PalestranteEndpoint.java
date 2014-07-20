@@ -88,6 +88,6 @@ public class PalestranteEndpoint
    @Path("/teste")
    @Produces("application/json")
    public Response teste(){
-	   return Response.ok().build();
+	   return Response.ok("testando endpoint rest...").build();
    }
 }
