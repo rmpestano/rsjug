@@ -38,8 +38,13 @@ OBS: <dependency>
 OBS: web.xml config rest	
 8.2 -@RunAsClient
 
-9 - functional testing
 
+OBS: após Faces Scaffold
+9 - functional testing (RSJugFt)
+9.1 - copiar dependencias
+9.2 - copiar deployment
+9.3 - mostrar drone
+9.4 - graphene
 
 
 
