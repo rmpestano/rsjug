@@ -20,6 +20,8 @@ public class Participante implements Serializable
    @Version
    @Column(name = "version")
    private int version = 0;
+   
+   private String nome;
 
    public Long getId()
    {
@@ -40,8 +42,18 @@ public class Participante implements Serializable
    {
       this.version = version;
    }
+   
+   
 
-   @Override
+   public String getNome() {
+	return nome;
+}
+
+public void setNome(String nome) {
+	this.nome = nome;
+}
+
+@Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";

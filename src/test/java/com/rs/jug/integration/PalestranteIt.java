@@ -1,4 +1,4 @@
-package com.rs.jug.service;
+package com.rs.jug.integration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -36,6 +36,7 @@ import org.junit.runner.RunWith;
 import com.rs.jug.crud.Crud;
 import com.rs.jug.model.Palestrante;
 import com.rs.jug.rest.PalestranteEndpoint;
+import com.rs.jug.service.PalestranteService;
 
 @RunWith(Arquillian.class)
 public class PalestranteIt

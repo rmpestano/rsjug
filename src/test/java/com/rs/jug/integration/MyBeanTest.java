@@ -1,4 +1,4 @@
-package com.rs.jug.bean;
+package com.rs.jug.integration;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -13,6 +13,8 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.rs.jug.bean.MyBean;
 
 @RunWith(Arquillian.class)
 public class MyBeanTest
