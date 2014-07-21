@@ -1,11 +1,12 @@
 package com.rs.jug.functional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+
+import javax.validation.constraints.AssertFalse;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -26,8 +27,10 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import com.rs.jug.crud.Crud;
+import com.rs.jug.functional.fragment.Menu;
 import com.rs.jug.functional.page.PalestrantePesquisaPage;
 import com.rs.jug.util.DBUtils;
 import com.rs.jug.view.EventoBean;
@@ -40,6 +43,12 @@ public class RSJugFt {
 
 	@ArquillianResource
 	URL context;
+	
+	@FindBy(id="navigation")
+	Menu menu;
+	
+	@FindBy(id="homeLink")
+	WebElement home;
 	
 	@Page
 	PalestrantePesquisaPage palestrantePage;
@@ -102,6 +111,13 @@ public class RSJugFt {
 		}
 	}
 	
+	@Test
+	@InSequence(5)
+	public void deveNavegarViaMenu(){
+		Graphene.guardHttp(home).click();
+		menu.gotoPalestrante();
+		assertTrue(palestrantePage.isDisplayed());
+	}
 	
 	
 }

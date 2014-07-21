@@ -21,7 +21,6 @@ public class PalestrantePesquisaPage {
 		return h1 != null && h1.isDisplayed();
 	}
 	
-	
 	public void pesquisaPorNome(String nome){
 		inputNomesearch.clear();
 		inputNomesearch.sendKeys(nome);
