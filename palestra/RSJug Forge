@@ -4,6 +4,7 @@ persistence setup --provider HIBERNATE --container WILDFLY
 
 entity --named Evento
 field string --named nome
+field int --named vagas
 field temporal --type  DATE --named Data
 
 
@@ -57,5 +58,17 @@ crud service-from-entity --entity com.rs.jug.model.Palestrante.java
 
 arquillian create-test --class com.rs.jug.service.PalestranteService.java
 
+rest setup
 
+rest endpoint-from-entity --contentType application/json com.rs.jug.model.Palestrante.java
+
+faces setup
+
+scaffold setup --scaffoldType faces
+
+scaffold from-entity com.rs.jug.model.Palestrante.java
+scaffold from-entity com.rs.jug.model.Participante.java
+scaffold from-entity com.rs.jug.model.Evento.java
+
+OBS: trocar dependencia jboss-javaee-6.0
 

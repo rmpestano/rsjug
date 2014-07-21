@@ -6,45 +6,47 @@ Slides
 
 hands on
 3 criar projeto
-3.1 entidades Evento, Palestrante e Participante
-3.2 Cria mybean cdi isAlive
- 
-4 mostrar 3 profiles WELD-EMBEDDED, Wild-MANAGED e JBOSS-REMOTE em cima do MyBean
+3.1 Cria mybean cdi isAlive
+3.2 mostrar 3 profiles WELD-EMBEDDED, Wild-MANAGED e JBOSS-REMOTE em cima do MyBean
+3.3 entidades Evento, Palestrante e Participante
 
-5 - modos de executar testes: forge, run/debug as junit e maven(perfis de teste)
+4 - modos de executar testes: run/debug as junit e maven(perfis de teste)
 
-6 - criar crud
+5 - criar crud
 
-6.1 test service
-6.2 teste em modo remoto
-6.3 classnot found
-6.4 teste store e remove palestrante
+5.1 test service
+5.2 teste em modo remoto
+5.3 classnot found
+5.4 teste store e remove palestrante
 obs:   <defaultProtocol type="Servlet 3.0" />
-7 - demostrar arquillian persistence
-7.1- incluir paletrante count cleanup
+6 - demostrar arquillian persistence
+6.1- incluir paletrante count cleanup
 obs: <property name="defaultCleanupPhase">none</property>
-7.2- excluir palestrante dataset
-7.3- matchDataset
-7.4- asserts regras de negocio 
+6.2- excluir palestrante dataset
+6.3- matchDataset
+6.4- asserts regras de negocio 
 
-8 exemplo black box REST
-8.1 - rest setup
+7 exemplo black box REST
+7.1 - rest setup
 OBS: <dependency>
 		<groupId>org.jboss.resteasy</groupId>
 		<artifactId>resteasy-jaxrs</artifactId>
 		<version>2.3.3.Final</version>
 		<scope>test</scope>
 	</dependency>
-OBS: web.xml config rest	
-8.2 -@RunAsClient
+OBS: web.xml deployment config rest	
+7.2 -@RunAsClient
 
 
 OBS: após Faces Scaffold
-9 - functional testing (RSJugFt)
-9.1 - copiar dependencias
-9.2 - copiar deployment
-9.3 - mostrar drone
-9.4 - graphene
+8 - functional testing (RSJugFt)
+8.1 - copiar dependencias
+8.2 - copiar deployment
+8.3 - mostrar drone indexPage
+8.4 - graphene initialPage e @Page
+
+8.5 - pesquisar palestrante 
+8.5.1 - seed db via EJB
 
 
 
