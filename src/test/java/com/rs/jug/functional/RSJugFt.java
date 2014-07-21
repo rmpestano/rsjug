@@ -6,8 +6,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 
-import javax.validation.constraints.AssertFalse;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
