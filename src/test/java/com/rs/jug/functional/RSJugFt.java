@@ -28,7 +28,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.rs.jug.crud.Crud;
-import com.rs.jug.functional.page.PalestrantePage;
+import com.rs.jug.functional.page.PalestrantePesquisaPage;
 import com.rs.jug.util.DBUtils;
 import com.rs.jug.view.EventoBean;
 
@@ -42,7 +42,7 @@ public class RSJugFt {
 	URL context;
 	
 	@Page
-	PalestrantePage palestrantePage;
+	PalestrantePesquisaPage palestrantePage;
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
@@ -77,7 +77,7 @@ public class RSJugFt {
 	
 	@Test
 	@InSequence(2)
-	public void shouldNavigateToPalestrante(@InitialPage PalestrantePage page){
+	public void shouldNavigateToPalestrante(@InitialPage PalestrantePesquisaPage page){
 		WebElement h1 = browser.findElement(By.xpath("//div[@id='content']//h1[contains(text(),'Palestrante')]"));
 		assertNotNull(h1);
 		assertTrue(h1.isDisplayed());
@@ -87,13 +87,13 @@ public class RSJugFt {
 	@Test
 	@InSequence(3)
 	public void shouldNavigateToPalestrante(){
-		Graphene.goTo(PalestrantePage.class);
+		Graphene.goTo(PalestrantePesquisaPage.class);
 		assertTrue(palestrantePage.isDisplayed());
 	}
 	
 	@Test
 	@InSequence(4)
-	public void shouldSearchPalestrantePorNome(@InitialPage PalestrantePage page){
+	public void shouldSearchPalestrantePorNome(@InitialPage PalestrantePesquisaPage page){
 		assertTrue(page.isDisplayed());
 		page.pesquisaPorNome("Pestano");
 		List<WebElement> linhas =  browser.findElements(By.xpath("//*[@id='search:palestranteBeanPageItems']//tr//span"));

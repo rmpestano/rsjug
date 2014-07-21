@@ -38,15 +38,18 @@ OBS: web.xml deployment config rest
 7.2 -@RunAsClient
 
 
-OBS: após Faces Scaffold
+OBS: após Faces Scaffold(remover dependencia jboss-javaee-6.0)
 8 - functional testing (RSJugFt)
 8.1 - copiar dependencias
 8.2 - copiar deployment
 8.3 - mostrar drone indexPage
-8.4 - graphene initialPage e @Page
-
+8.4 - graphene initialPage e @Page e fragmento
 8.5 - pesquisar palestrante 
 8.5.1 - seed db via EJB
+
+9 - code coverage local e jenkins\sonar
+
+10 - deployment pipeline
 
 
 

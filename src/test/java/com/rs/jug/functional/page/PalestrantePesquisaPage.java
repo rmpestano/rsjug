@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Location(value="palestrante/search.faces")
-public class PalestrantePage {
+public class PalestrantePesquisaPage {
 	
 	@FindBy(xpath="//div[@id='content']//h1[contains(text(),'Palestrante')]")
 	private WebElement h1;

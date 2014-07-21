@@ -12,11 +12,11 @@
 		<version.arquillian.drone.bom>1.3.1.Final</version.arquillian.drone.bom>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.selenium>2.41.0</version.selenium>
-		<version.arquillian_core>1.1.4.Final</version.arquillian_core>
+		<version.arquillian_core>1.1.3.Final</version.arquillian_core>
 		<!-- sonar -->
-        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -126,6 +126,14 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- end Persistence -->
+
+		<!-- arquillian jbehave -->
+		<dependency>
+			<groupId>org.jboss.arquillian.jbehave</groupId>
+			<artifactId>arquillian-jbehave-core</artifactId>
+			<version>1.0.2</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- REST -->
 		<dependency>
@@ -313,10 +321,12 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>2.14.1</version>
 						<configuration>
+						<runOrder>reversealphabetical</runOrder>
 							<includes>
 								<include>**/*MyBeanTest.java</include>
 								<include>**/*It.java</include>
 								<include>**/*Ft.java</include>
+								<include>**/*Bdd.java</include>
 							</includes>
 						</configuration>
 					</plugin>
@@ -334,6 +344,7 @@
 							<includes>
 								<include>**/*MyBeanTest.java</include>
 								<include>**/*It.java</include>
+								<include>**/*Bdd.java</include>
 							</includes>
 						</configuration>
 					</plugin>
@@ -356,49 +367,49 @@
 				</plugins>
 			</build>
 		</profile>
-		 <!-- tests coverage-->
-        <profile>
-            <id>jacoco</id>
-            <properties>
-                <jacoco.version>0.7.0.201403182114</jacoco.version>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-jacoco</artifactId>
-                    <version>1.0.0.Alpha6</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>org.jacoco.core</artifactId>
-                    <version>${jacoco.version}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>${jacoco.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>report</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+		<!-- tests coverage -->
+		<profile>
+			<id>jacoco</id>
+			<properties>
+				<jacoco.version>0.7.0.201403182114</jacoco.version>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.arquillian.extension</groupId>
+					<artifactId>arquillian-jacoco</artifactId>
+					<version>1.0.0.Alpha6</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jacoco</groupId>
+					<artifactId>org.jacoco.core</artifactId>
+					<version>${jacoco.version}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 </project>
