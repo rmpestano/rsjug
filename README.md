@@ -1,0 +1,1 @@
+application built on my arquillian talk for RSJug: http://rmpestano.github.io/talks/slides/arquillian-rsjug/index.html
